@@ -27,6 +27,7 @@ library("readxl")
 library("ggplot2")
 library("dplyr")
 library("lubridate")
+library("showtext")
 ```
 
 
@@ -40,34 +41,43 @@ personaldata_clean <- personaldata |> clean_names() # cleaning up the variable n
 ## Box Plot
 
 ```{r}
-ggplot(data = personaldata_clean, # start with the personaldata_clean data frame
-       aes(x = school_day, # x-axis should be type of day
-           y = floors_climbed, # y-axis should be number of floors climbed 
-           color = school_day)) + # coloring by type of day
-  geom_boxplot() + # first layer should be a boxplot
-  geom_jitter(width = 0.2, # making the points jitter horizontally
-              height = 0) + # making sure points don't jitter vertically
-  labs(x = "School Day", # labelling the x-axis
-       y = "Floors Climbed") + # labelling the y-axis
-  theme(legend.position = "none") # removes the legend
+showtext_auto() # using showtext in order to access custom fonts
+font_add_google(name = "Montserrat", family = "montserrat") # choosing the google font "Montserrat"
+
+ggplot(data = personaldata_clean, # using ggplot and setting data frame
+       aes(x = school_day, # setting x axis value
+           y = floors_climbed, # setting y axis value
+           color = school_day)) + # coloring based on school day
+  geom_boxplot() + # creating a boxplot
+  geom_jitter(width = 0.2, height = 0) + # horizontal jitter to prevent overlapping points
+  labs(x = "School Day", # labeling x axis
+       y = "Floors Climbed") + # labeling y axis
+  theme_minimal(base_family = "montserrat") +  # minimal theme and using custom font
+  theme(legend.position = "none") # removing legend
 ```
+
 
 ## Ridgeline Chart
 
 ```{r}
 library(ggridges) # reading in ggridges package
 
+showtext_auto() # access custom fonts
+font_add_google(name = "Montserrat", family = "montserrat") # using the "Montserrat" font
+
 ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school_day)) + # choosing data frame and assigning axis values
   geom_density_ridges(scale = 1, alpha = 0.7) + # adding density ridges
   labs(x = "Floors Climbed", y = "School Day") + # adding axis labels
-  theme_minimal() + # adding a minimalistic theme
+  theme_minimal(base_family = "montserrat") + # adding a minimalist theme
   theme(legend.position = "none") # removing the legend
 ```
-
 
 ## Stacked Area Chart
 
 ```{r}
+showtext_auto() # access custom fonts
+font_add_google(name = "Montserrat", family = "montserrat") # using the "Montserrat" font
+
 personaldatasummary <- personaldata_clean |> # choosing data frame and summarizing
   group_by(school_day, date) |> # grouping by select variables
   summarize(daily_floors = sum(floors_climbed, na.rm = TRUE), .groups = "drop") |> # summarizing daily floors climbed
@@ -95,7 +105,7 @@ ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_d
     x = "Date", # labeling x axis
     y = "Cumulative Floors" # labeling y axis
   ) +
-  theme_minimal() + # adding a minimalist theme
+  theme_minimal(base_family = "montserrat") + # adding a minimalist theme
   theme(legend.position = "none") + # removing legend
   expand_limits(x = max(personaldatasummary$date) + 5) # expand x axis to display chart labels
 ```
