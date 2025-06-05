@@ -68,27 +68,34 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
 ## Stacked Area Chart
 
 ```{r}
-label_data <- personaldatasummary |> 
-  group_by(school_day) |> 
-  slice_max(order_by = date, n = 1)
+personaldatasummary <- personaldata_clean |> # choosing data frame and summarizing
+  group_by(school_day, date) |> # grouping by select variables
+  summarize(daily_floors = sum(floors_climbed, na.rm = TRUE), .groups = "drop") |> # summarizing daily floors climbed
+  arrange(date) |> # arranging by date
+  group_by(school_day) |> # grouping by school day
+  mutate(cumulative_floors = cumsum(daily_floors)) # taking the cumulative sum of daily floors climbed
 
-ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_day)) +
-  geom_area(alpha = 0.8) +
-  geom_text(
-    data = label_data,
-    aes(x = date, y = cumulative_floors, label = school_day),
-    hjust = -0.1,
-    vjust = 0.5,
-    size = 4,
-    color = "black",
-    inherit.aes = FALSE
+label_data <- personaldatasummary |> # labeling data
+  group_by(school_day) |> # grouping by school day (yes or no)
+  slice_max(order_by = date, n = 1) # selecting rows with the largest values of a variable
+
+ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_day)) + # using ggplot and assigning values
+  geom_area(alpha = 0.8) + # stacked area chart
+  geom_text( # adding labels to plot
+    data = label_data, # labeling data
+    aes(x = date, y = cumulative_floors, label = school_day), # assigning values
+    hjust = -0.1, # horizontal orientation
+    vjust = 0.5, # vertical orientation
+    size = 4, # choosing font size
+    color = "black", # black labels
+    inherit.aes = FALSE # overriding default aesthetics
   ) +
-  labs(
-    title = "Cumulative Floors Climbed by School Day",
-    x = "Date",
-    y = "Cumulative Floors"
+  labs( # labels
+    title = "Cumulative Floors Climbed by School Day", # adding title
+    x = "Date", # labeling x axis
+    y = "Cumulative Floors" # labeling y axis
   ) +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  expand_limits(x = max(personaldatasummary$date) + 5)
+  theme_minimal() + # adding a minimalist theme
+  theme(legend.position = "none") + # removing legend
+  expand_limits(x = max(personaldatasummary$date) + 5) # expand x axis to display chart labels
 ```
