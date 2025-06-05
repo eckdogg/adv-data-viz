@@ -11,6 +11,13 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
+# Repository Link
+
+<https://github.com/eckdogg/adv-data-viz>
+
+
+# Set up
+
 ```{r}
 library("tidyverse") # reading in packages
 library("here")
@@ -22,6 +29,10 @@ library("dplyr")
 library("lubridate")
 ```
 
+
+# Code for Graphs
+
+## 
 ```{r}
 personaldata <- read_csv(here("data","personaldatajune3.csv")) # creating an object called "personaldata" from my csv
 personaldata_clean <- personaldata |> clean_names() # cleaning up the variable names
