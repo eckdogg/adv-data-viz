@@ -53,6 +53,15 @@ ggplot(data = personaldata_clean, # start with the personaldata_clean data frame
   theme(legend.position = "none") # removes the legend
 ```
 
+## Ridgeline Chart
 
+```{r}
+library(ggridges)
 
+ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school_day)) +
+  geom_density_ridges(scale = 1, alpha = 0.7) +
+  labs(x = "Floors Climbed", y = "School Day") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
 
