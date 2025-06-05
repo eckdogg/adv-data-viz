@@ -1,0 +1,23 @@
+---
+title: "Advanced Data Visualization"
+format: html
+editor: source
+---
+
+```{r}
+library("tidyverse") # reading in packages
+library("here")
+library("gt")
+library("janitor")
+library("readxl")
+library("ggplot2")
+library("dplyr")
+library("lubridate")
+```
+
+
+
+
+
+
+
