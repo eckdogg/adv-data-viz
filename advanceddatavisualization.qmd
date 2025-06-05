@@ -56,12 +56,18 @@ ggplot(data = personaldata_clean, # start with the personaldata_clean data frame
 ## Ridgeline Chart
 
 ```{r}
-library(ggridges)
+library(ggridges) # reading in ggridges package
 
-ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school_day)) +
-  geom_density_ridges(scale = 1, alpha = 0.7) +
-  labs(x = "Floors Climbed", y = "School Day") +
-  theme_minimal() +
-  theme(legend.position = "none")
+ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school_day)) + # choosing data frame and assigning axis values
+  geom_density_ridges(scale = 1, alpha = 0.7) + # adding density ridges
+  labs(x = "Floors Climbed", y = "School Day") + # adding axis labels
+  theme_minimal() + # adding a minimalistic theme
+  theme(legend.position = "none") # removing the legend
+```
+
+## Stacked Area Chart
+
+```{r}
+
 ```
 
