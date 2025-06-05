@@ -63,3 +63,32 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
   theme_minimal() + # adding a minimalistic theme
   theme(legend.position = "none") # removing the legend
 ```
+
+
+## Stacked Area Chart
+
+```{r}
+label_data <- personaldatasummary |> 
+  group_by(school_day) |> 
+  slice_max(order_by = date, n = 1)
+
+ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_day)) +
+  geom_area(alpha = 0.8) +
+  geom_text(
+    data = label_data,
+    aes(x = date, y = cumulative_floors, label = school_day),
+    hjust = -0.1,
+    vjust = 0.5,
+    size = 4,
+    color = "black",
+    inherit.aes = FALSE
+  ) +
+  labs(
+    title = "Cumulative Floors Climbed by School Day",
+    x = "Date",
+    y = "Cumulative Floors"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  expand_limits(x = max(personaldatasummary$date) + 5)
+```
