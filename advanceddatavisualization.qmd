@@ -49,7 +49,6 @@ ggplot(data = personaldata_clean, # start with the personaldata_clean data frame
               height = 0) + # making sure points don't jitter vertically
   labs(x = "School Day", # labelling the x-axis
        y = "Floors Climbed") + # labelling the y-axis
-   scale_color_manual(values = c("Yes" = "deepskyblue2", "No" = "deeppink2"))  + # manually setting colors
   theme(legend.position = "none") # removes the legend
 ```
 
@@ -64,10 +63,3 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
   theme_minimal() + # adding a minimalistic theme
   theme(legend.position = "none") # removing the legend
 ```
-
-## Stacked Area Chart
-
-```{r}
-
-```
-
