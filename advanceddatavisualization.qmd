@@ -1,7 +1,14 @@
 ---
 title: "Advanced Data Visualization"
-format: html
+author: Owen Eckweiler
+date: 6/4/2025
 editor: source
+format: 
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
 ---
 
 ```{r}
@@ -15,7 +22,10 @@ library("dplyr")
 library("lubridate")
 ```
 
-
+```{r}
+personaldata <- read_csv(here("data","personaldatajune3.csv")) # creating an object called "personaldata" from my csv
+personaldata_clean <- personaldata |> clean_names() # cleaning up the variable names
+```
 
 
 
