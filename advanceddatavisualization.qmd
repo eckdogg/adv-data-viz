@@ -32,12 +32,26 @@ library("lubridate")
 
 # Code for Graphs
 
-## 
 ```{r}
 personaldata <- read_csv(here("data","personaldatajune3.csv")) # creating an object called "personaldata" from my csv
 personaldata_clean <- personaldata |> clean_names() # cleaning up the variable names
 ```
 
+## Box Plot
+
+```{r}
+ggplot(data = personaldata_clean, # start with the personaldata_clean data frame
+       aes(x = school_day, # x-axis should be type of day
+           y = floors_climbed, # y-axis should be number of floors climbed 
+           color = school_day)) + # coloring by type of day
+  geom_boxplot() + # first layer should be a boxplot
+  geom_jitter(width = 0.2, # making the points jitter horizontally
+              height = 0) + # making sure points don't jitter vertically
+  labs(x = "School Day", # labelling the x-axis
+       y = "Floors Climbed") + # labelling the y-axis
+   scale_color_manual(values = c("Yes" = "deepskyblue2", "No" = "deeppink2"))  + # manually setting colors
+  theme(legend.position = "none") # removes the legend
+```
 
 
 
