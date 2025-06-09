@@ -61,7 +61,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
              arrow = grid::arrow(length = unit(0.5, 'lines')), 
              curvature = -0.3, angle = 40, ncp = 3,
              color ='black') +
-  draw_label("Median floors climbed \n on school days",
+  draw_label("Median floors climbed \n on non school days",
              fontfamily = "montserrat",
              x =  1.6,   
              y =  45,
@@ -72,7 +72,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
              arrow = grid::arrow(length = unit(0.5, 'lines')), 
              curvature = -0.3, angle = 40, ncp = 3,
              color ='black') +
-  draw_label("Median floors climbed \n on non school days",
+  draw_label("Median floors climbed \n on school days",
              fontfamily = "montserrat",
              x =  2.4,   
              y =  45,
