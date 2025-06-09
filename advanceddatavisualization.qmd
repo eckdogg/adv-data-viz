@@ -28,6 +28,8 @@ library("ggplot2")
 library("dplyr")
 library("lubridate")
 library("showtext")
+library("cowplot")
+library("ggtext")
 ```
 
 
@@ -53,7 +55,30 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
   labs(x = "School Day", # labeling x axis
        y = "Floors Climbed") + # labeling y axis
   theme_minimal(base_family = "montserrat") +  # minimal theme and using custom font
-  theme(legend.position = "none") # removing legend
+  theme(legend.position = "none") + # removing legend
+  geom_curve(x = 1.5, y = 40,
+                 xend = 1, yend = 20.1,
+             arrow = grid::arrow(length = unit(0.5, 'lines')), 
+             curvature = -0.3, angle = 40, ncp = 3,
+             color ='black') +
+  draw_label("Median floors climbed \n on school days",
+             fontfamily = "montserrat",
+             x =  1.6,   
+             y =  45,
+             size = 10,
+             color = "black") +
+  geom_curve(x = 2.5, y = 40,
+                 xend = 2, yend = 9.2,
+             arrow = grid::arrow(length = unit(0.5, 'lines')), 
+             curvature = -0.3, angle = 40, ncp = 3,
+             color ='black') +
+  draw_label("Median floors climbed \n on non school days",
+             fontfamily = "montserrat",
+             x =  2.4,   
+             y =  45,
+             size = 10,
+             color = "black")
+  
 ```
 
 
