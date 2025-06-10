@@ -2,4 +2,4 @@
 Repository for my advanced data visualization submission
 Link for html:
 
-![Infographic](images/your-image-name.png)
+![Infographic](images/advdatavisualization.png)
