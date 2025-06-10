@@ -77,10 +77,12 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
              x =  2.4,   
              y =  45,
              size = 10,
-             color = "black")
-  
+             color = "black") +
+  scale_color_manual(values = c(
+    "Yes" = "olivedrab",
+    "No" = "slateblue2"
+  ))
 ```
-
 
 ## Ridgeline Chart
 
@@ -94,7 +96,32 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
   geom_density_ridges(scale = 1, alpha = 0.7) + # adding density ridges
   labs(x = "Floors Climbed", y = "School Day") + # adding axis labels
   theme_minimal(base_family = "montserrat") + # adding a minimalist theme
-  theme(legend.position = "none") # removing the legend
+  theme(legend.position = "none") + # removing the legend
+  geom_curve(x = 28, y = 2.5,
+                 xend = 9, yend = 3,
+             arrow = grid::arrow(length = unit(0.5, 'lines')), 
+             curvature = -0.3, angle = 100, ncp = 6,
+             color ='black') +
+  draw_label("A high peak indicates many data \n points are concentrated around \n the corresponding x-value",
+             fontfamily = "montserrat",
+             x =  53,   
+             y =  2.5,
+             size = 10,
+             color = "black") +
+  geom_curve(x = 28, y = 0.75,
+                 xend = 6.5, yend = 1.5,
+             arrow = grid::arrow(length = unit(0.5, 'lines')), 
+             curvature = -0.3, angle = 100, ncp = 6,
+             color ='black') +
+  draw_label("This peak is lower because the \n data points have a wider distribution",
+             fontfamily = "montserrat",
+             x =  55,   
+             y =  0.75,
+             size = 10,
+             color = "black") +
+  scale_fill_manual(values = c(
+  "Yes" = "olivedrab",        
+  "No" = "slateblue2"))
 ```
 
 ## Stacked Area Chart
@@ -114,6 +141,16 @@ label_data <- personaldatasummary |> # labeling data
   group_by(school_day) |> # grouping by school day (yes or no)
   slice_max(order_by = date, n = 1) # selecting rows with the largest values of a variable
 
+personaldatasummary <- personaldatasummary %>%
+  mutate(school_day = recode(school_day,
+                             "Yes" = "School Day",
+                             "No"  = "Non School Day"))
+
+label_data <- label_data %>%
+  mutate(school_day = recode(school_day,
+                             "Yes" = "School Day",
+                             "No"  = "Non School Day"))
+
 ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_day)) + # using ggplot and assigning values
   geom_area(alpha = 0.8) + # stacked area chart
   geom_text( # adding labels to plot
@@ -123,6 +160,7 @@ ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_d
     vjust = 0.5, # vertical orientation
     size = 4, # choosing font size
     color = "black", # black labels
+    family = "montserrat",
     inherit.aes = FALSE # overriding default aesthetics
   ) +
   labs( # labels
@@ -132,5 +170,19 @@ ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_d
   ) +
   theme_minimal(base_family = "montserrat") + # adding a minimalist theme
   theme(legend.position = "none") + # removing legend
-  expand_limits(x = max(personaldatasummary$date) + 5) # expand x axis to display chart labels
+  expand_limits(x = max(personaldatasummary$date) + 5) + # expand x axis to display chart labels
+  geom_curve(x = as.Date("2025-05-15"), y = 600,
+                 xend = as.Date("2025-05-25"), yend = 500,
+             arrow = grid::arrow(length = unit(0.5, 'lines')), 
+             curvature = -0.3, angle = 100, ncp = 6,
+             color ='black') +
+  draw_label("Despite only accounting for 2 days out of the \n week, the cumulative floors climbed on \n non school days is much higher than on school days",
+             fontfamily = "montserrat",
+             x = as.Date("2025-05-05"),   
+             y =  600,
+             size = 10,
+             color = "black") + 
+  scale_fill_manual(values = c("School Day" = "olivedrab",
+               "Non School Day" = "slateblue2"))
+
 ```
