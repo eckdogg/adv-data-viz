@@ -186,3 +186,11 @@ ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_d
                "Non School Day" = "slateblue2"))
 
 ```
+
+## Write-Up
+
+- In the first visualization I am highlighting the median number of floors climbed and the range of the values for school days and non school days. In the second visualization I am highlighting the distribution of values for floors climbed on school days and non school days. In the third visualization I am highlighting the cumulative number of floors climbed for school days and non school days.
+- For my infographic I chose a white background to match the white backgrounds of my visualizations, which blends together well. I used the simple Arial font because I think it easy to read. I chose a vertical orientation and alternated the visualizations and text to make a smooth visual.
+- I was inspired to use the boxplot through this class. I was inspired to use the ridgeline plot because An suggested this as an option in one of my meetings with her. For the stacked area chart I was inspired by a visualization by the user "z3tt" on GitHub.
+- Yes, I cleaned and summarized my data. I ended up using geom_boxplot, geom_jitter, geom_curve, geom_density_ridges, geom_area, and geom_text. 
+- I used Elmera Azadpour's website for a geom_curve template. I used Google to help learn how to code the visualizations. I also used ChatGPT to help identify errors in my code.
