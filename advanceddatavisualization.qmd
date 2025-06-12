@@ -1,7 +1,7 @@
 ---
 title: "Advanced Data Visualization"
 author: Owen Eckweiler
-date: 6/4/2025
+date: 6/11/2025
 editor: source
 format: 
   html:
