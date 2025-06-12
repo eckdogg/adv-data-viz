@@ -74,7 +74,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
              color ='black') + # color of arrow 2
   draw_label("Median floors climbed \n on school days", # setting label 2
              fontfamily = "montserrat", # choosing font for label 2
-             x =  2.4, # x axis location of label 2
+             x =  2.7, # x axis location of label 2
              y =  45, # y axis location of label 2
              size = 10, # font size of label 2
              color = "black") + # color of label 2
@@ -105,7 +105,7 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
              color ='black') + # color of arrow 1
   draw_label("A high peak indicates many data \n points are concentrated around \n the corresponding x-value", # setting label 1
              fontfamily = "montserrat", # setting font for label 1
-             x =  53, # x axis location for label 1
+             x =  45, # x axis location for label 1
              y =  2.5, # y axis location for label 1
              size = 10, # font size for label 1
              color = "black") + # font color for label 1
@@ -116,7 +116,7 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
              color ='black') + # color of arrow 2
   draw_label("This peak is lower because the \n data points have a wider distribution", # setting label 2
              fontfamily = "montserrat", # setting font for label 2
-             x =  55, # x axis location for label 2
+             x =  45, # x axis location for label 2
              y =  0.75, # y axis location for label 2
              size = 10, # font size for label 2
              color = "black") + # color of font for label 2
@@ -180,7 +180,7 @@ ggplot(personaldatasummary, aes(x = date, y = cumulative_floors, fill = school_d
              color ='black') + # color of arrow
   draw_label("Despite only accounting for 2 days out of the \n week, the cumulative floors climbed on \n non school days is much higher than on school days", # choosing label
              fontfamily = "montserrat", # choosing font for label
-             x = as.Date("2025-05-05"), # x axis location for label
+             x = as.Date("2025-10-05"), # x axis location for label
              y =  600, # y axis location for label
              size = 10, # font size for label
              color = "black") + # font color for label
