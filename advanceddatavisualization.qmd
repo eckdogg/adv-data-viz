@@ -52,7 +52,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
            color = school_day)) + # coloring based on school day
   geom_boxplot() + # creating a boxplot
   geom_jitter(width = 0.2, height = 0) + # horizontal jitter to prevent overlapping points
-  labs(x = "School Day", # labeling x axis
+  labs(x = NULL, # labeling x axis
        y = "Floors Climbed") + # labeling y axis
   theme_minimal(base_family = "montserrat") +  # minimal theme and using custom font
   theme(legend.position = "none") + # removing legend
@@ -81,7 +81,8 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
   scale_color_manual(values = c(
     "Yes" = "olivedrab", # manually setting color for yes value
     "No" = "slateblue2" # manually setting color for no value
-  ))
+  )) +
+  scale_x_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day"))
 ```
 
 ## Ridgeline Chart
@@ -94,7 +95,7 @@ font_add_google(name = "Montserrat", family = "montserrat") # using the "Montser
 
 ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school_day)) + # choosing data frame and assigning axis values
   geom_density_ridges(scale = 1, alpha = 0.7) + # adding density ridges
-  labs(x = "Floors Climbed", y = "School Day") + # adding axis labels
+  labs(x = "Floors Climbed", y = NULL) + # adding axis labels
   theme_minimal(base_family = "montserrat") + # adding a minimalist theme
   theme(legend.position = "none") + # removing the legend
   geom_curve(x = 28, y = 2.5, 
@@ -121,7 +122,8 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
              color = "black") + # color of font for label 2
   scale_fill_manual(values = c(
   "Yes" = "olivedrab", # manually setting color for yes value   
-  "No" = "slateblue2")) # manually setting color for no value
+  "No" = "slateblue2")) + # manually setting color for no value
+  scale_y_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day"))
 ```
 
 ## Stacked Area Chart
