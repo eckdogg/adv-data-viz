@@ -52,7 +52,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
            color = school_day)) + # coloring based on school day
   geom_boxplot() + # creating a boxplot
   geom_jitter(width = 0.2, height = 0) + # horizontal jitter to prevent overlapping points
-  labs(x = NULL, # labeling x axis
+  labs(x = NULL, # no x axis label
        y = "Floors Climbed") + # labeling y axis
   theme_minimal(base_family = "montserrat") +  # minimal theme and using custom font
   theme(legend.position = "none") + # removing legend
@@ -82,7 +82,7 @@ ggplot(data = personaldata_clean, # using ggplot and setting data frame
     "Yes" = "olivedrab", # manually setting color for yes value
     "No" = "slateblue2" # manually setting color for no value
   )) +
-  scale_x_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day"))
+  scale_x_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day")) # changing x axis labels
 ```
 
 ## Ridgeline Chart
@@ -123,7 +123,7 @@ ggplot(personaldata_clean, aes(x = floors_climbed, y = school_day, fill = school
   scale_fill_manual(values = c(
   "Yes" = "olivedrab", # manually setting color for yes value   
   "No" = "slateblue2")) + # manually setting color for no value
-  scale_y_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day"))
+  scale_y_discrete(labels = c("No" = "Non School Day", "Yes" = "School Day")) # changing y axis labels
 ```
 
 ## Stacked Area Chart
